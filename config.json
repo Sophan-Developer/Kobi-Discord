@@ -1,0 +1,12 @@
+{
+
+    "OWNER_ID":"#discord id",
+    "BOT_TOKEN": "#discord bot token",
+    "tenorAPI":"ZEEELJXAFQBN",
+    "DEFAULT_PREFIX":"k!",
+    "mongoPass": "#mongopass Database url",
+    "ERROR_LOGS_CHANNEL": "#ur channel log ID",
+    "YT_COOKIE": "#YOUTUBE COOKIE"
+    
+}
+

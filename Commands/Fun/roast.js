@@ -1,0 +1,92 @@
+const Discord = module.require("discord.js");
+
+module.exports = {
+  name: "roast",
+  description: "Buat Pengguna Emosi",
+  run: async (client, message, args) => {
+    let target = message.mentions.members.first() || args.join(" ");
+    let isBotOwner = require("../../config.json").OWNER_ID;
+    if (args.length == 0) {
+      return message.channel
+        .send("Sial, Kamu mencoba untuk Bikin emosi udara..??")
+        .then((msg) => setTimeout(() => msg.delete(), 2300));
+    }
+    var roasts = [
+      "Bodoh dipelihara, kambing dipelihara bisa gemuk.",
+      "Kau sangat bodoh.",
+      "Cok jengkelin kali kau ini...",
+      "Orang bodoh bisa berbahagia dengan kebodohannya.",
+      "Kamu sama bodohnya dengan Spongebob.",
+      "IQ KAMU lebih rendah dari udang.",
+      "Kau sangat menyebalkan bahkan lalat pun menjauhi bau busukmu.",
+      "Pergi, tolong.",
+      "Saya akan memberi Anda tampilan yang buruk tetapi Anda sudah memilikinya.",
+      "Sepertinya wajahmu terbakar dan seseorang mencoba memadamkannya dengan palu.",
+      "Pohon keluargamu pasti kaktus karena semua orang yang ada di dalamnya adalah bajingan.",
+      "Suatu hari kamu akan pergi jauh, dan aku harap kamu tinggal di sana.",
+      "Kebun binatang menelepon. Mereka bertanya-tanya bagaimana kamu bisa keluar dari kandangmu.",
+      "Saya berharap untuk pertempuran akal, tetapi Anda tampaknya tidak bersenjata.",
+      "Kamu adalah bukti bahwa evolusi bisa berjalan terbalik.",
+      "Otak bukanlah segalanya, dalam kasusmu, mereka bukan apa-apa.",
+      "Maaf saya tidak mengerti, saya tidak berbicara idiot.",
+      "Mengapa bisa diterima bagi Anda untuk menjadi idiot, tetapi tidak bagi saya untuk menunjukkannya?",
+      "Kita semua berasal dari kera, tetapi kamu tidak melompat cukup jauh.",
+      "Bahkan monyet pun bisa pergi ke luar angkasa, jadi jelas kamu tidak memiliki potensi.",
+      "Ini otak di atas otot, namun Anda tidak memiliki keduanya.",
+      "Kamu terlihat seperti monyet, dan kamu juga berbau seperti monyet.",
+      "Bahkan di antara para idiot kamu masih kurang.",
+      "Kamu gagal bahkan ketika kamu sama sekali tidak melakukan apa-apa.",
+      "Jika ada suara untuk 'kemungkinan yang paling kecil untuk berhasil', Anda akan memenangkan hadiah pertama.",
+      "Aku dikelilingi oleh orang-orang idiot... Atau, tunggu, itu hanya kamu.",
+      "Aku ingin pulang. Yah, sebenarnya aku hanya ingin menjauh dari aroma tak sedap yang kau bawa ke sana.",
+      "Setiap kali Anda menyentuh saya, saya harus pulang dan mencuci semua pakaian saya sembilan kali hanya untuk mendapatkan kembali bau yang normal.",
+      "Jika saya memiliki satu dolar untuk setiap otak yang tidak Anda miliki, saya akan memiliki satu dolar.",
+      "Saya akan membantu Anda sukses tetapi Anda tidak mampu.",
+      "Garis rambut Anda dibangun seperti grafik grafik, kekuatan positif dan negatif menarik tetapi gunting dan rambut Anda menolak.",
+      "Aku tahu lelucon yang bagus! Kamu!",
+      "Kamu memiliki dua bagian otak, 'kiri' dan 'kanan'. Di sisi kiri, tidak ada yang benar. Di sisi kanan, tidak ada yang tersisa.",
+      "Apakah pantatmu cemburu dengan jumlah kotoran yang baru saja keluar dari mulutmu?",
+      "Saya tidak terlibat dalam pertempuran mental dengan yang tidak bersenjata.",
+      "Dua kesalahan tidak membuat yang benar, ambil contoh orang tuamu.",
+      "Akte kelahiran Anda adalah surat permintaan maaf dari pabrik kondom.",
+      "Kamu terdengar masuk akal. Pasti sudah waktunya untuk meminum obatku!",
+      "Kamu pasti lahir di jalan raya karena di situlah kebanyakan kecelakaan terjadi.",
+      "Kamu sangat jelek, ketika ibumu mengantarmu ke sekolah dia didenda karena membuang sampah sembarangan.",
+      "Jika tertawa adalah obat terbaik, maka wajahmu pasti menyembuhkan dunia.",
+      "Saya ingin melihat sesuatu dari sudut pandang Anda, tetapi sepertinya saya tidak bisa mengangkat kepala saya sejauh itu.",
+      "Satu-satunya cara Anda akan bercinta adalah jika Anda merangkak naik dan menunggu.",
+      "Aku iri pada semua orang yang belum pernah bertemu denganmu!",
+      "Jika saya memiliki wajah seperti Anda, saya akan menuntut orang tua saya.",
+      "Hanya ada satu masalah dengan wajahmu. Aku bisa melihatnya.",
+      "Tidakkah kamu mencintai alam, terlepas dari apa yang terjadi padamu?",
+      "Bahasa apa yang kamu bicarakan? Karena kedengarannya seperti omong kosong.",
+      "Kebodohan bukanlah kejahatan jadi kamu bebas untuk pergi.",
+      "Jadi, sebuah pikiran terlintas di benakmu? Pasti perjalanan yang panjang dan sepi.",
+      "Anda memiliki IQ suhu kamar - jika ruangannya di Antartika.",
+      "Jika Anda benar-benar ingin tahu tentang kesalahan, Anda harus bertanya kepada orang tua Anda.",
+      "Saya akan menanyakan berapa usia Anda, tetapi saya tahu Anda tidak dapat menghitung setinggi itu.",
+      "Apakah Anda ingin tahu bagaimana saya mendapatkan semua penghinaan ini? Saya menggunakan sesuatu yang disebut kecerdasan.",
+      "Aku akan memberimu tatapan jahat, tetapi kamu sudah memilikinya.",
+      "Aku tidak tahu apa masalahmu, tapi aku berani bertaruh itu sulit untuk diucapkan.",
+      "Otak bukanlah segalanya. Dalam kasusmu, mereka bukan apa-apa.",
+      "Aku tau sebenarnya kamu itu GIGOLO kan",
+      "Kamu terlihat seperti Artis bokep.",
+      "Oh, apa? Maaf. Aku mencoba membayangkanmu dengan kepribadian ganda.",
+      "Idiot over power.",
+      "Kami selalu tahu kapan kamu berbohong. Bibirmu bergerak.",
+      "Kalo kamu nggak bisa bikin orang lain ketawa, setidaknya jangan bikin orang lain menangis, kan begitu.",
+      "Saya menemukan hanya ada satu cara untuk terlihat kurus: Kumpul bersama orang gendut.",
+      "Kamu adalah bukti hidup bahwa TAI dapat berjalan.",
+      "Kau sadar makeup tidak akan memperbaiki kebodohanmu?",
+      "Memanggilmu idiot akan menjadi penghinaan bagi semua orang bodoh.",
+      "Selalu ikuti kata hatimu. Tapi jangan lupa bawa juga otakmu.",
+      "Orang bodoh bisa berbahagia dengan kebodohannya.",
+      "Hargai kedua orangtuamu, mereka berhasil lulus sekolah tanpa bantuan Google.",
+      "Statusnya rohani, kelakuannya roh halus!",
+      "Handphone jatuh, kita panik. Teman jatuh, kita tertawa terbahak-bahak",
+    ];
+    await message.channel.send(
+      `${target}, ${roasts[Math.floor(Math.random() * roasts.length)]}`
+    );
+  },
+};
