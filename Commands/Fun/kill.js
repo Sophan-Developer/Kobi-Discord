@@ -36,7 +36,7 @@ module.exports = {
       `${author} bunuh ${target} dengan pensil.`,
       `${author} bunuh ${target} dengan garpu.`,
       `${author} bunuh ${target} dengan sendok`,
-      `${author} bunuh ${target} racun tikus`,
+      `${author} bunuh ${target} dengan campur kopi + racun tikus`,
       `${author} bunuh ${target} dengan cangkul.`,
       `${author} apa bener kamu mau bunuh ${target} ?? dia itu fans blackpink.`,
       `${author} alt+F4 ${target}`,
